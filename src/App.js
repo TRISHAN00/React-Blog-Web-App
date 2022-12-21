@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { Router } from "@reach/router";
+import "./App.css";
+import Home from "./pages/home/Home";
+import Login from "./pages/login/Login";
+import Register from "./pages/register/Register";
+import Settings from "./pages/setting/Settings";
+import Single from "./pages/single/Single";
+import Write from "./pages/write/Write";
 function App() {
+  const user = false;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Home exact path="/" />
+      {user ? <Home exact path="/" /> : <Register path="/register" />}
+      {user ? <Home exact path="/" /> : <Login path="/login" />}
+      {user ? <Write path="/write" /> : <Register path="/register" />}
+      {user ? <Settings path="/setting" /> : <Register path="/register" />}
+      <Single path="/post/:postId" />
+    </Router>
   );
 }
 
